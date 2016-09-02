@@ -1,6 +1,9 @@
 # GEOSANDBOX: BUILDING CURIOUS GEOGRAPHIC GEOMETRIES ON THE WEB 
 with Joey Lee
 
+![](assets/geosandbox.png)
+
+
 This workshop provides a sandbox for participants to engage in the process of geographic data creation. Using opensource web based mapping tools such as Geojson.io and Turf.js, participants will make new geographic datasets through drawing and computation. The goal of the workshop is to help participants gain an understanding of the ways geoprocessing can be used in their own practices to produce new geometric forms and analyses. 
 
 The outcome of the workshop will be a simple experimental map drawing app that is as complex or simple as the participant is comfortable.
