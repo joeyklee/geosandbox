@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Building Curious GeoGeometries</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<style type="text/css">
+
+
+    iframe{
+        overflow-y: hidden;
+        overflow-x: hidden;
+        border: none;
+    }
+    body {
+      position: relative;
+  }
+   ul.nav-pills {
+      top: 30px;
+      left:10px;
+      position: fixed;
+      overflow-y: auto;
+  }
+  .nav-pills > li.active > a{
+    background-color: #673ab7;
+  }
+
+  .navbar-brand{ margin-left: 20px; }
+
+
+
+  @media (max-width: 1080px) {
+    #myScrollspy {
+      display: none;
+    }
+  }
+
+  #hello-leaflet{
+    background-color: #00A388;
+    color:white;
+  }
+  #hello-turf{
+    background-color: #FFFF9D;
+    color:black;
+  }
+
+  #oakland-crime-exploration{
+    background-color: #FF6138;
+  }
+
+  .jumbotron, .btn,.btn-primary,.btn-lg{
+    border-radius: 0 !important;
+  }
+
+  #hello-leaflet-button{
+    background-color: #004d40;
+    border:none;
+  }
+  #hello-turf-button{
+    background-color: #e6e600;
+    color:black;
+    border:none;
+  }
+  #oakland-crime-exploration-button{
+    background-color: #661400;
+    border:none;
+  }
+
+  #data-drawing-tool{
+    background-color: #f781bf;
+    color:black;
+  }
+  #data-drawing-tool-button{
+    background-color: #c00c6c;
+    color:black;
+    border:none;
+  }
+
+</style>
+<body>
+        <!-- colors: https://color.adobe.com/Phaedra-color-theme-1764754/?showPublished=true -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="">
+        <a class="navbar-brand" href="index.html">
+          <img alt="geosandbox" src="assets/geosandbox.png" width="30px">
+        </a>
+        <p class="navbar-text"><b>GeoSandbox</b></p>
+        <p class="navbar-text pull-right"><a href="boilerplate/index.html" download>Download Leaflet Boilerplate</a></p>
+      </div>
+    </nav>
+    <br><br><br>
+    <div class="container">
+        <!-- <div class="col-md-12">
+            <div class="col-md-12">
+            <h1>GeoSandbox</h1></p>
+            <p><a href="boilerplate/index.html" download>Download Leaflet Boilerplate</a></p>
+            </div>
+        </div> -->
+
+        <div class="col-md-12">
+            <div class="jumbotron" id="hello-leaflet">
+              <h2>Hello, Leaflet.js!</h2>
+              <p>Get started with the leaflet.js library. Using this interactive sandbox, you will be able to experiment with the leaflet.js API and learn how to work with geodata on the web.</p>
+              <p><a class="btn btn-primary btn-lg" href="hello-leaflet.html" role="button" target="_blank" id="hello-leaflet-button">Get Started!</a></p>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="jumbotron" id="hello-turf">
+              <h2>Hello, Turf.js!</h2>
+              <p>Get started with the turf.js library - an advanced geospatial analysis API for the browser. Using this interactive sandbox, you will be able to experiment with turf.js functions and learn how it extends your interactive web map.</p>
+              <p><a class="btn btn-primary btn-lg" href="hello-turf.html" role="button" target="_blank" id="hello-turf-button">Get Started!</a></p>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="jumbotron" id="data-drawing-tool">
+              <h2>Experimental Data Drawing Tool</h2>
+              <p>The Experimental Data Drawing Tool showcases some possiblities for mapping and creating data using leaflet.js and turf.js. This example builds on the learnings from <a href="hello-leaflet.html">Hello, Leaflet.js!</a> and <a href="hello-turf.html">Hello, Turf.js!</a> to put together a simple map drawing tool.</p>
+              <p><a class="btn btn-primary btn-lg" href="data-drawing-tool.html" role="button" target="_blank" id="data-drawing-tool-button">Get Started!</a></p>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="jumbotron" id="oakland-crime-exploration">
+              <h2>Oakland Crime Exploration</h2>
+              <p>The Oakland Crime Exploration showcases some possiblities for mapping data using leaflet.js and turf.js. This example builds on the learnings from <a href="hello-leaflet.html">Hello, Leaflet.js!</a> and <a href="hello-turf.html">Hello, Turf.js!</a> to represent the crime data from Oakland, CA.</p>
+              <p><a class="btn btn-primary btn-lg" href="oakland-crime.html" role="button" target="_blank" id="oakland-crime-exploration-button">Get Started!</a></p>
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>

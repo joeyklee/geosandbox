@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Building Curious GeoGeometries</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<style type="text/css">
+iframe {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    border: none;
+}
+
+body {
+    position: relative;
+}
+
+.nav-pills > li.active > a {
+    background-color: #673ab7;
+}
+
+.navbar-brand {
+    margin-left: 20px;
+}
+
+#myScrollspy {
+    z-index: 1000;
+    position: fixed;
+    left: 0px;
+    height: 100%;
+    overflow-y: auto;
+}
+.align-center{
+    position: absolute;
+    left:50%;
+}
+
+
+@media (max-width: 1020px) {
+    #myScrollspy {
+        display: none;
+    }
+}
+</style>
+
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="200">
+    <!-- navbar top -->
+    <nav class="navbar navbar-default">
+        <div class="">
+            <a class="navbar-brand" href="index.html">
+                <img alt="geosandbox" src="assets/geosandbox.png" width="30px">
+            </a>
+            <p class="navbar-text"><b>GeoSandbox</b></p>
+            <p class="navbar-text align-center"><b>Hello Turf.js!</b></p>
+            <p class="navbar-text pull-right"><a href="boilerplate/index.html" download>Download Leaflet Boilerplate</a></p>
+        </div>
+    </nav>
+    <!-- page main -->
+    <div class="col-md-12">
+        <div id="myScrollspy" class="col-md-2">
+            <ul id="legend" class="nav nav-pills"></ul>
+        </div>
+        <div class="col-md-offset-2" id="lessons"></div>
+        <div>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+// create an array of the html
+var lessons = [{
+    link: 'turf_point.html',
+    title: 'Geojson Point: turf.point',
+    desc: 'create a geojson representation of a point as a marker.'
+}, {
+    link: 'turf_point_circle.html',
+    title: 'Geojson Circle',
+    desc: 'add custom styles to your geojson point using the pointToLayer option in the geojson style. Here, you return a leaflet L.circle() using the lat/lng coordinates.'
+}, {
+    link: 'turf_line.html',
+    title: 'Geojson Line: turf.lineString()',
+    desc: 'use turf.lineString() to create a geojson representation of a line using an array of arrays with coordinates. NOTE: the coordinates are arranged here using ["longitude", "latitude"] rather than the lat/lng. '
+}, {
+    link: 'turf_bezier.html',
+    title: 'Geojson Line Bezier',
+    desc: 'you can turn a geojson line (perhaps one defined using turf.lineString()) into a bezier curve. Here see how our jagged line becomes smoothed through bezier interpolation.'
+}, {
+    link: 'turf_random_points.html',
+    title: 'Random geojson points in bounding box',
+    desc: 'Sometimes it is handy to be able to produce random points within a bounding box. This can produce some perhaps some interesting aesthetics or help you to sample data randomly.'
+}, {
+    link: 'turf_random_polys.html',
+    title: 'Random geojson polygons in bounding box',
+    desc: 'Sometimes it is handy to be able to produce random geometries within a bounding box. Notice there are options to set the number of vertices each random polygon can have as well as how large the polygons should be.'
+}, {
+    link: 'turf_tin.html',
+    title: 'Triangle Irregular Network',
+    desc: 'Triangle Irregular Networks are beautiful but also handy for showing things like elevation or communicating about height. Here we 1. first generate a random set of points, 2. assign random height values to those points, 3. create a TIN from those points, and 4. display the TIN with the random colors we assigned it.'
+}, {
+    link: 'turf_tesselate.html',
+    title: 'Tesselation',
+    desc: 'Tesselations I guess are useful for computer graphic things. I have not ever had a reason to use tesselations in my own work, but maybe you find them useful. Basically, you throw in a polygon and the polygon becomes chopped into triangles.'
+}];
+
+// 
+lessons.forEach(function(d, i) {
+    var output = "<h3>" + d.title + "</h3>" + "<p>" + d.desc + "</p>" +
+        "<iframe src=" + "'lessons/hello-turf/" + d.link + "'" + "width = '100%' height = '720px'" + "id='section" + i + "'></iframe>";
+
+    var legendItems = "<li><a href='#section" + i + "'>" + d.title + "</a></li>";
+    $('#lessons').append(output);
+    $('#legend').append(legendItems);
+})
+
+// $("#dl").click(function() {
+//     var text = editor.getValue();
+//     var filename = $("#input-fileName").val()
+//     var blob = new Blob([text], {
+//         type: "text/plain;charset=utf-8"
+//     });
+//     saveAs(blob, filename + ".js");
+// });
+</script>
+
+</html>

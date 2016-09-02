@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello Leafletjs</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<style type="text/css">
+iframe {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    border: none;
+}
+
+body {
+    position: relative;
+}
+
+.nav-pills > li.active > a {
+    background-color: #673ab7;
+}
+
+#myScrollspy {
+    z-index: 1000;
+    position: fixed;
+    left: 0px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.navbar-brand {
+    margin-left: 20px;
+}
+
+@media (max-width: 1020px) {
+    #myScrollspy {
+        display: none;
+    }
+}
+
+.align-center{
+    position: absolute;
+    left:50%;
+}
+
+
+
+</style>
+
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="200">
+    <!-- navbar top -->
+    <nav class="navbar navbar-default center">
+        <div class="">
+            <a class="navbar-brand" href="index.html">
+                <img alt="geosandbox" src="assets/geosandbox.png" width="30px">
+            </a>
+            <p class="navbar-text"><b>GeoSandbox</b></p>
+            <p class="navbar-text align-center"><b>Hello Leaflet.js!</b></p>
+            <p class="navbar-text pull-right"><a href="boilerplate/index.html" download>Download Leaflet Boilerplate</a></p>
+        </div>
+    </nav>
+
+    <!-- page main -->
+    <div class="col-md-12">
+        <div id="myScrollspy" class="col-md-2">
+            <ul id="legend" class="nav nav-pills"></ul>
+        </div>
+        <div class="col-md-offset-2" id="lessons"></div>
+        <div>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+// create an array of the html
+var lessons = [{
+    link: 'init_map.html',
+    title: 'Leaflet map: L.map',
+    desc: 'Create a map by using the L.map() function. You specify the div element id so leaflet knows where to put the map element. Remember to set the width and height of the div container using css.'
+}, {
+    link: 'leaflet_marker.html',
+    title: 'Leaflet pin: L.marker',
+    desc: 'Create a marker by using the L.marker() function. The input is an array [latitude, longitude]. You call the .addTo(map) function of the L.marker instance to add the marker to the map.'
+}, {
+    link: 'leaflet_circle.html',
+    title: 'Leaflet circle: L.circle',
+    desc: 'Create a circle by using the L.circle() function. The input is an array [latitude, longitude] and a radius value. You call the .addTo(map) function of the L.circle instance to add the circle to the map. The radius is in meters.'
+}, {
+    link: 'leaflet_polyline.html',
+    title: 'Leaflet line: L.polyline',
+    desc: 'Create a line by using the L.polyline() function. The input is an array of arrays [[latitude, longitude], [latitude, longitude], [latitude, longitude], ... ]. You call the .addTo(map) function of the L.polyline instance to add the line to the map. Here, we store the coordinates in a variable called "latlngs" and then feed it into the L.polyline() function. You may also notice we add {color:"red"} to change the line color. '
+}, {
+    link: 'leaflet_rectangle.html',
+    title: 'Leaflet rectangle: L.rectangle',
+    desc: 'Create a rectangle by using the L.rectangle() function. The input is an array of arrays [[latitude-south, longitude-west], [latitude-north, longitude-east] ]. You call the .addTo(map) function of the L.rectangle instance to add the rectangle to the map.'
+}, {
+    link: 'leaflet_polygon.html',
+    title: 'Leaflet Polygon: L.polygon',
+    desc: 'Create a polygon by using the L.polygon() function. The input is an array of arrays [[latitude, longitude], [latitude, longitude], [latitude, longitude], ... ]. You call the .addTo(map) function of the L.polygon instance to add the polygon to the map.'
+}, {
+    link: 'leaflet_icon.html',
+    title: 'Leaflet Icon: L.icon',
+    desc: 'Use a png image to replace the default leaflet marker or use more complex geometries made in another drawing program. You can link to your image using the iconUrl option and set the size, etc. If you are looking for more control, you can use the <a href="http://leafletjs.com/reference.html#divicon"> L.divIcon()</a> function to use CSS to generate your custom marker style.'
+}, {
+    link: 'leaflet_bind_popup.html',
+    title: 'Leaflet Popups: .bindPopup()',
+    desc: 'Create a popup on a leaflet geometry using the L.bindPopup. The input is plain text OR html in quotes. You can bind the popup directly to the geometry or to a variable that references the geometry.'
+}, {
+    link: 'leaflet_map_click_event.html',
+    title: 'Map events: map.on("click", ...)',
+    desc: 'You can use map.on() to set events that happen with map interactions. Here we use the "click" event to draw circles on the map when you click.'
+}, {
+    link: 'load_geojson_1.html',
+    title: 'JQuery Load Geojson',
+    desc: 'Load external geojson data using the $.getJSON("path/to/file.geojson", callback(myjson){}). The "myjson" will be your geojson data once it has completed loading.'
+}, {
+    link: 'load_geojson_2.html',
+    title: 'D3 Load Geojson',
+    desc: 'Load external geojson data using the d3.json("path/to/file.geojson", callback(myjson){}). The "myjson" will be your geojson data once it has completed loading. I like to use d3 together with my leaflet stuff to access the nice helper functions for calculating the min, max, median, etc of my data.'
+}, {
+    link: 'leaflet_layerGroup.html',
+    title: 'Using layerGroups',
+    desc: 'Use leaflet layer groups to add associated data layers to the map. Using layer groups allow you to easily remove data from the map and to manage related data. Here we add our points to the layerGroup and then press "x" to clear the points.'
+}, {
+    link: 'leaflet_layer_menu.html',
+    title: 'Layer toggling and overlays',
+    desc: 'Use leaflet layer groups to toggle on and off various layers onto the map with the leaflet layer control.'
+}, {
+    link: 'leaflet_draw_simple.html',
+    title: 'Simple Leaflet Draw',
+    desc: 'Use the leaflet draw library to draw geometries easily. Press "1" on your keyboard to save what you have drawn to a geojson file. NOTE: to save the radius of your circles as a property, you need to use the <a href="https://github.com/Leaflet/Leaflet.draw/issues/336"> .getRadius()</a> function. This means that the circles your draw with leaflet draw are not actually elipses from a data perspective, but rather points rendered with a circle of a certain diameter.'
+}
+];
+
+// 
+lessons.forEach(function(d, i) {
+    var output = "<h3>" + d.title + "</h3>" + "<p>" + d.desc + "</p>" +
+        "<iframe src=" + "'lessons/hello-leaflet/" + d.link + "'" + "width = '100%' height = '720px'" + "id='section" + i + "'></iframe>";
+
+    var legendItems = "<li><a href='#section" + i + "'>" + d.title + "</a></li>";
+    $('#lessons').append(output);
+    $('#legend').append(legendItems);
+})
+
+// $("#dl").click(function() {
+//     var text = editor.getValue();
+//     var filename = $("#input-fileName").val()
+//     var blob = new Blob([text], {
+//         type: "text/plain;charset=utf-8"
+//     });
+//     saveAs(blob, filename + ".js");
+// });
+</script>
+
+</html>
