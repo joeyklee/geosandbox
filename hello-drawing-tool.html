@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Data Drawing Tool</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<style type="text/css">
+iframe {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    border: none;
+}
+
+body {
+    position: relative;
+}
+
+.nav-pills > li.active > a {
+    background-color: #673ab7;
+}
+
+#myScrollspy {
+    z-index: 1000;
+    position: fixed;
+    left: 0px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.navbar-brand {
+    margin-left: 20px;
+}
+
+@media (max-width: 1020px) {
+    #myScrollspy {
+        display: none;
+    }
+}
+
+.align-center {
+    position: absolute;
+    left: 50%;
+}
+</style>
+
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="200">
+    <!-- navbar top -->
+    <nav class="navbar navbar-default center">
+        <div class="">
+            <a class="navbar-brand" href="index.html">
+                <img alt="geosandbox" src="assets/geosandbox.png" width="30px">
+            </a>
+            <p class="navbar-text"><b>GeoSandbox</b></p>
+            <p class="navbar-text align-center"><b>Let's Make a Drawing Tool!</b></p>
+            <p class="navbar-text pull-right"><a href="boilerplate/index.html" download>Download Leaflet Boilerplate</a></p>
+        </div>
+    </nav>
+    <!-- page main -->
+    <div class="col-md-12">
+        <div id="myScrollspy" class="col-md-2">
+            <ul id="legend" class="nav nav-pills"></ul>
+        </div>
+        <div class="col-md-offset-2" id="lessons"></div>
+        <div>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+// create an array of the html
+var lessons = [{
+    title: 'Initialize Map Drawing Tools',
+    link: 'init_map_controls.html',
+    desc: 'initialize the map drawing controls.'
+}, {
+    title: 'Create a layer toggler to hold our new layers',
+    link: 'init_layer_toggler.html',
+    desc: 'use the leaflet layer toggler to store the fancy new geometries you will create in your tool. Here we define a few new featureGroup() objects which we will be our data holders.'
+}, {
+    title: 'Keyboard Events Part I: which key?',
+    link: 'map_key_press_1a.html',
+    desc: 'The leaflet map object comes with event handlers. Here we can start to create a pattern for detecting which key was pressed and then call some function when a specific key is pressed.'
+}, {
+    title: 'Keyboard Events Part II: A Bezier from Points/Circles',
+    link: 'map_key_press_bezier.html',
+    desc: 'Here we define a function called pointsToBezier(). This function says: "when the number 1 key is pressed - 1. get all the points that have been drawn on the map and put them in a list, 2. create a geojson lineString from those points in that list, and 3. then calculate a bezier curve from that lineString." '
+}, {
+    title: 'Keyboard Events Part III: A Triangle Irregular Network from Points/Circles',
+    link: 'map_key_press_tin.html',
+    desc: 'Here we define a function called pointsToTin(). This function says: "when the number 2 key is pressed - 1. get all the points that have been drawn on the map and put them in a list, 2. create a featureCollection of geojson points from the geojson points in that list, and 3. then calculate a triangular irregular network from that featureCollection." '
+}, {
+    title: 'Keyboard Events Part IV: Generating point circles to polygon circles',
+    link: 'map_key_press_circles.html',
+    desc: 'Here we define a function called circlesToCircles(). This function says: "when the number 3 key is pressed - 1. get all the points circles that have been drawn on the map, 2. take those points and their radius and draw the circle as a polygon and put them in a list, 2. create a featureCollection of those geojson polygon circles, and 3. then throws those circles into the circs featureGroup." '
+}, {
+    title: 'Keyboard Events Part V: Saving Data',
+    link: 'map_key_press_datadump.html',
+    desc: 'Here we define a function called downloadJson(). This function says: "1. when the capital letter A key is pressed download the data you have drawn with the drawing tools, 2. when the capital letter B is pressed, download the data you have drawn for the bezier. '
+}];
+
+// 
+lessons.forEach(function(d, i) {
+    var output = "<h3>" + d.title + "</h3>" + "<p>" + d.desc + "</p>" +
+        "<iframe src=" + "'lessons/hello-drawing-tool/" + d.link + "'" + "width = '100%' height = '720px'" + "id='section" + i + "'></iframe>";
+
+    var legendItems = "<li><a href='#section" + i + "'>" + d.title + "</a></li>";
+    $('#lessons').append(output);
+    $('#legend').append(legendItems);
+})
+
+// $("#dl").click(function() {
+//     var text = editor.getValue();
+//     var filename = $("#input-fileName").val()
+//     var blob = new Blob([text], {
+//         type: "text/plain;charset=utf-8"
+//     });
+//     saveAs(blob, filename + ".js");
+// });
+</script>
+
+</html>
