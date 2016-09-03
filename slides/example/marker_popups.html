@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Leaflet Boilerplate</title>
+    <!--  -->
+    <script type="text/javascript" src="https://npmcdn.com/@turf/turf@3.5.1/turf.min.js"></script>
+    <!-- leaflet -->
+    <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+    <script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--  filesaver -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+    <!-- d3 -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+    <!-- leaflet draw -->
+    <link rel="stylesheet" href="http://leaflet.github.io/Leaflet.draw/leaflet.draw.css" />
+    <script type="text/javascript" src="https://leaflet.github.io/Leaflet.draw/leaflet.draw.js"></script>
+</head>
+<style type="text/css">
+html,
+body {
+    height: 100%;
+}
+
+#mapid {
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<body>
+    <div id="mapid"></div>
+    <script type="text/javascript">
+    var map;
+
+    function initMap() {
+        // initialize map container
+        map = L.map('mapid').setView([37.799289, -122.266433], 13);
+
+        // get the stamen toner-lite tiles
+        var Stamen_Toner = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
+            attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> — Map data © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            subdomains: 'abcd',
+            minZoom: 0,
+            maxZoom: 20,
+            ext: 'png'
+        });
+
+        // add the tiles to the map
+        Stamen_Toner.addTo(map);
+
+        //disable scroll wheel zoom 
+        map.scrollWheelZoom.disable();
+    }
+    initMap();
+
+    // add your things below
+
+    var pin;
+    var ellipse;
+    var poly;
+
+    pin = L.marker([37.79, -122.26]).addTo(map);
+    ellipse = L.circle([37.79, -122.24], 700, {
+        color: "red"
+    }).addTo(map);
+    poly = L.polygon([
+        [37.82015824048042, -122.28796005249022],
+        [37.82524314302978, -122.28195190429686],
+        [37.8209718484305, -122.27362632751466],
+        [37.815208598896255, -122.27663040161133],
+        [37.81432712106107, -122.28641510009766],
+        [37.82015824048042, -122.28796005249022]
+    ], {
+        color: "purple"
+    }).addTo(map);
+
+    pin.bindPopup("i'm a pin");
+    ellipse.bindPopup("i'm an circle");
+    poly.bindPopup("i'm a polygon");
+    </script>
+</body>
+
+</html>
