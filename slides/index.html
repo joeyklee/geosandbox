@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>GeoSandBox</title>
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Printing and PDF exports -->
+    <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+    <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+</head>
+<style type="text/css">
+.reveal .slides h1,
+h2,
+h3 {
+    text-align: left;
+}
+
+.imgtext{
+    background-color: rgba(0,0,0,0.5);
+    padding:20px 20px 20px 20px;
+}
+</style>
+
+<body>
+    <div class="reveal">
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section>
+                <h1>The GeoSandBox 🌍</h1>
+                <h3>Building Curious GEOmetries on the Web</h3>
+                <p>
+                    <small><a href="http://jk-lee.com">Joey Lee</a> / <a href="http://twitter.com/leejoeyk">tw:@leejoeyk</a></small>
+                </p>
+            </section>
+            <section data-background="img/lab.png">
+                <p style="background:rgba(0,0,0,0.5)">Hi! I'm Joey</p>
+            </section>
+            <section data-background="img/mapping-process-1.png"></section>
+            <section data-background="img/mapping-process-2.png"></section>
+            <!-- <section data-background="img/IMG_0375.JPG">
+                <h2 style="background:rgba(0,0,0,0.5)">"Future GIS is NOT GIS" - David 'O Sullivan</h2>
+            </section> -->
+            <section>
+                <h2>Hello There</h2>
+                <p>
+                    Today we're going to learn about web maps!
+                </p>
+            </section>
+
+            <section>
+                <h2>Don't worry if you've never done this before.</h2>
+                <p>
+                    Maps are for <em>everyone</em>.
+                </p>
+            </section>
+
+            <section>
+                <h2>Big shoutout to Alan McConchie, Beth Schechter, and Lyzi Diamond - most of these slides are from their <a href="http://maptime.io/anatomy-of-a-web-map/#0">"Anatomy of a Web Map"</a></h2>
+            </section>
+
+            <section>
+                <h2>But before we start mapping, let's learn about what goes into making <em>a web map</em> </h2>
+            </section>
+
+            <section>
+                <h2>Web maps (as opposed to paper maps) are those that live in our browser like...</h2>
+            </section>
+
+            <section data-background="http://maptime.io/anatomy-of-a-web-map/images/osm.png">
+                <h1 class="imgtext">OpenStreetMap</h1>
+                
+            </section>
+
+            <section data-background="http://maptime.io/anatomy-of-a-web-map/images/google-map.png">
+                <h1 class="imgtext">GoogleMaps</h1>
+                
+            </section>
+
+            <section data-background="http://maptime.io/anatomy-of-a-web-map/images/mapsdotstamen.png">
+                <h1 class="imgtext">Stamen</h1>
+            </section>
+
+            <section data-background="http://maptime.io/anatomy-of-a-web-map/images/google-earth.png">
+                <!-- <img src=""> -->
+                <h2 class="imgtext" style="color: white">Google Earth is a type of Web Map, but this is a whole different kind of web map that we're not going to talk about today :)</h2>
+                
+            </section>
+
+            <section>
+                <h1>How did web maps come to be?</h1>
+            </section>
+
+            <section data-background="http://maptime.io/anatomy-of-a-web-map/images/3-map-history/1-arcGIS.jpg">
+                <h1 class="imgtext">First there were digital maps like those from ArcGIS</h1>
+                
+            </section>
+
+            <section>
+                <h1>Although useful, desktop GIS tools are not user friendly :(</h1>
+            </section>
+
+            <section data-background="http://maptime.io/anatomy-of-a-web-map/images/3-map-history/2-Ridgefield-CT-Mapquest-out.jpg">
+                <h1 class="imgtext">1996 - mapquest launches its webservice</h1>
+                
+            </section>
+            <section>
+                <h2>Directions, online! Amazing! <em>BUT</em> it was painfully slow - each time a user zoomed or scrolled, the whole page had to refresh.</h2>
+            </section>
+            <section data-background="http://maptime.io/anatomy-of-a-web-map/images/3-map-history/3-old-google-maps-1.JPG">
+                <h1 class="imgtext">2005 - GoogleMaps develops the "map tile"</h1>
+                
+            </section>
+            <section>
+                <h1>How we interact with and understand web maps today are based on "map tiles"</h1>
+                <p>Let's take a second to understand how they work...</p>
+            </section>
+
+
+            <section data-background="img/osm-map.png">
+                <h2 class="imgtext">When we look at a modern web map we see something like this</h2>
+                
+            </section>
+            <section data-background="assets/img/g-map.png">
+                <h2 class="imgtext">Or this</h2>
+                
+            </section>
+
+            <section data-background="http://maptime.io/anatomy-of-a-web-map/images/tiles-loading.gif">
+                <h2 class="imgtext">However, what these "seemingly" seamless maps are actually composed of smaller images (tiles!) that are stiched together. </h2>
+                
+            </section>
+
+            <section >
+                <h2 class="imgtext">Yes, that's right, the map is composed of 100s to 1000s of little images (pngs or jpgs) that get sent right to your browser</h2>
+                <img src="http://maptime.io/anatomy-of-a-web-map/images/tiles.gif">
+            </section>
+
+            <section data-background="http://maptime.io/anatomy-of-a-web-map/images/slippy-map.gif">
+                <h2 class="imgtext">This creates the wonderful illusion of a seamless map while also allowing them to load über quickly and efficiently.</h2>
+                
+            </section>
+
+            <section>
+                <h2>What the tiling process does is take a map and create its own set of map tiles <em>for each zoom level</em>. The number of tiles increases exponentially as you zoom in.</h2>
+            </section>
+
+            <section >
+                <h2 >Zoom level 0: one tile for the world.</h2>
+                <img src="http://maptime.io/anatomy-of-a-web-map/images/tiles/zoom0.png">
+            </section>
+            <section >
+                <h2 >Zoom level 1: 4 tiles for the world.</h2>
+               <img src="http://maptime.io/anatomy-of-a-web-map/images/tiles/zoom1.png">
+            </section>
+            <section >
+                <h2 >Zoom level 13:...</h2>
+                <img src="http://maptime.io/anatomy-of-a-web-map/images/tiles/zoom13.png">
+            </section>
+
+            <section>
+                <h2>In general, web maps use the Mercator Projection which was designed for sailors and navigation.</h2>
+                <p>But now web maps can support other projections (see: <a href="http://blog.cartodb.com/free-your-maps-web-mercator/">Free your maps from Web Mercator!</a> </p>
+            </section>
+
+            <section>
+                <h1>Now that we've learned the background behind modern web maps, let's look what <em>compose a web map</em></h1>
+            </section>
+
+            <section>
+                <img src="http://maptime.io/anatomy-of-a-web-map/images/basemap-datalayers-01.png">
+            </section>
+            <section>
+                <img src="http://maptime.io/anatomy-of-a-web-map/images/basemap-datalayers-02.png">
+            </section>
+            <section>
+                <img src="http://maptime.io/anatomy-of-a-web-map/images/basemap-datalayers-03.png">
+            </section>
+            <section>
+                <img src="http://maptime.io/anatomy-of-a-web-map/images/basemap-datalayers-04.png">
+            </section>
+            <section>
+                <img src="http://maptime.io/anatomy-of-a-web-map/images/basemap-datalayers-05.png">
+            </section>
+            <section>
+                <img src="http://maptime.io/anatomy-of-a-web-map/images/basemap-datalayers-06.png">
+            </section>
+
+            <section>
+                <h2>In general when we show data on a map, we use <em>geographic data</em>. In a GIS we might typically use a <em>shapefile</em> but on the web we use <em> kml, csv(with lat/lon coordinates) or geojson</em> or some other web friendly formats.</h2>
+            </section>
+            
+            <section data-background="http://joeyklee.github.io/hellowebmaps/assets/img-presentation/shapefile-example.png">
+                <h2 class="imgtext">Shapefiles or geojson: Spreadsheet + Polygons in geospace (oversimplification) but you get the idea...</h2>
+            </section>
+
+            <section >
+                <h2>CSV file: comma separated values - like a data table</h2>
+                <img src="http://joeyklee.github.io/hellowebmaps/assets/img-presentation/csv-example.png">
+            </section>
+
+            <section>
+                <h1>So how do we actually make web maps then?</h1>
+            </section>
+
+            <section>
+                <img src="img/webstack-explained.png" style="background: rgba(255, 255, 255, 1)">
+            </section>
+
+            <section>
+            <img src="http://maptime.io/anatomy-of-a-web-map/images/anatomy-of-a-web-map.png">
+            </section>          
+            <section>
+                <h1>Leaflet.js</h1>
+                <p>Javascript library for building interactive web maps</p>
+            </section>
+            <section data-background="img/leaflet-homepage.png"></section>
+            <section>
+
+                <iframe width='100%' height='520' frameborder='0' src='https://joeyklee.github.io/geosandbox/slides/example/marker_popups.html' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+            </section>
+            <section data-background="img/leaflet-documentation.png">
+                <h3 class="imgtext">Documentation is great, but nicer to play!</h3>
+            </section>
+            <section>
+                <h3 class="imgtext">-->GeoSandBox</h3>
+                <iframe width='100%' height='520' frameborder='0' src='https://joeyklee.github.io/geosandbox/' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+            </section>
+            <section data-background="img/mapbox-turfjs.png">
+            </section>
+            <section>
+                <iframe width='100%' height='520' frameborder='0' src='https://joeyklee.github.io/geosandbox/slides/example/turf_hexgrid.html' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+            </section>
+            <section>
+                <h3>The GeoSandBox is a place to make learning the geoweb more interactive <br><br> + provides a set of code examples/templates like those made from <a href="https://www.mapbox.com/mapbox.js/example/v1.0.0/">Mapbox.js</a></h3>
+            </section>
+            <section data-background="https://raw.githubusercontent.com/joeyklee/geosandbox/master/assets/drawing-tool-screenshot.png?token=ADdEp1t7LS1dMeTt52icLiFkLQd3KBSUks5X1GwNwA%3D%3D">
+                <h3 class="imgtext">So ultimately we can use the different modules to create bigger things like a data drawing tool</a></h3>
+            </section>
+            <section>
+                
+                <h1>Many thanks!</h1>
+                <h2>Use the: <a href="http://joeyklee.github.io/geosandbox/">GeoSandBox</a></h2>
+                <h3>On github at: <a href="https://github.com/joeyklee/geosandbox">github.com/joeyklee/geosandbox</a></h3>
+                <h3><a href="https://twitter.com/leejoeyk">tw: @leejoeyk</a></h3>
+            </section>
+            <!-- <section>
+                <p>Tutorials</p>
+                <ul>
+                    <li>https://maptimeboston.github.io/leaflet-intro/</li>
+                    <li>https://luxembourgjs.github.io/leaflet-demo/#/</li>
+                </ul>
+            </section> -->
+            
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [{
+            src: 'lib/js/classList.js',
+            condition: function() {
+                return !document.body.classList;
+            }
+        }, {
+            src: 'plugin/markdown/marked.js',
+            condition: function() {
+                return !!document.querySelector('[data-markdown]');
+            }
+        }, {
+            src: 'plugin/markdown/markdown.js',
+            condition: function() {
+                return !!document.querySelector('[data-markdown]');
+            }
+        }, {
+            src: 'plugin/highlight/highlight.js',
+            async: true,
+            callback: function() {
+                hljs.initHighlightingOnLoad();
+            }
+        }, {
+            src: 'plugin/zoom-js/zoom.js',
+            async: true
+        }, {
+            src: 'plugin/notes/notes.js',
+            async: true
+        }]
+    });
+    </script>
+</body>
+
+</html>
