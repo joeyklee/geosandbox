@@ -8,6 +8,8 @@ This [workshop] provides a sandbox for participants to engage in the process of 
 
 The outcome of the workshop will be a simple experimental map drawing app that is as complex or simple as the participant is comfortable.
 
+## Communication:
+We will be using this [Mozfest 2016 etherpad](https://public.etherpad-mozilla.org/p/geosandbox) to communicate during the workshop to help with documentation, attendance, and to help share questions/answers quickly.
 
 ## Requirements:
 * own laptop
@@ -23,6 +25,7 @@ See [CODE OF CONDUCT](CODEOFCONDUCT.md)
 
 ## Contributing
 See [CONTRIBUTING](CONTRIBUTING.md)
+
 
 # Workshop
 
