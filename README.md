@@ -27,14 +27,14 @@ See [CONTRIBUTING](CONTRIBUTING.md)
 # Workshop
 
 ## Agenda:
-* short intro
+* short [intro to web mapping](https://joeyklee.github.io/geosandbox/slides/#/)
 * introduction to web mapping with leaflet.js and turf.js using the GeoSandBox
 * introduction to building your own experimental mini map drawing app.
 * facilitated working/learning time
 
 ## Setup
-* Fire up your favorite [text editor]()
-* Fire up the GeoSandBox
+* Fire up your favorite `text editor`
+* Navigate to the [GeoSandBox](https://joeyklee.github.io/geosandbox/index.html)
 
 ## Resources:
 * [Geojson.io](http://geojson.io/)
@@ -45,7 +45,8 @@ See [CONTRIBUTING](CONTRIBUTING.md)
 
 ## Part I: The GeoSandBox
 
-Please go to the [GeoSandBox](http://joeyklee.github.io/geosandbox/)
+Please go to the [GeoSandBox](http://joeyklee.github.io/geosandbox/). We will go through the [hello leaflet.js!](https://joeyklee.github.io/geosandbox/hello-leaflet.html) and the [hello turf.js!](https://joeyklee.github.io/geosandbox/hello-turf.html). Depending on the comfort level of the group with the material, we can continue playing with these lessons or move on to Part II.
+
 
 ## Part II: Your own experimental mini map drawing app
 
