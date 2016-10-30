@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello Leaflet</title>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- turfjs -->
+    <script type="text/javascript" src="https://npmcdn.com/@turf/turf@3.5.1/turf.min.js"></script>
+    <!-- leaflet -->
+    <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+    <script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+    <!-- code mirror -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/edit/matchbrackets.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/comment/continuecomment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/comment/comment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/mode/javascript/javascript.min.js"></script>
+    <!--  filesaver -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+    <!-- d3 -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+    <!-- leaflet draw -->
+    <!-- <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.draw/leaflet.draw.css" />
+    <script type="text/javascript" src="https://leaflet.github.io/Leaflet.draw/leaflet.draw.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="../../libs/leaflet.draw.css">
+    <script type="text/javascript" src="../../libs/leaflet.draw.js"></script>
+    <!-- lessons css -->
+    <link rel="stylesheet" type="text/css" href="../../components/lessons.css">
+</head>
+
+<body>
+    <div class="content">
+        <div class="col-md-6 col-sm-6" id="geocontainer">
+            <div id="mymap"> </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <button class="btn btn-success btn-lg" id="rerun">
+                <a class="glyphicon glyphicon-triangle-right"></a> Run Code
+            </button>
+            <!-- <button class="btn btn-default btn-lg" id="dl">
+        <a class="glyphicon glyphicon-save"></a> Download
+    </button> -->
+            <textarea id="code" name="code">
+// call initMap()
+initMap();
+
+var pointStyle = {
+    pointToLayer: function(feature, latlng){
+        return L.circle(latlng);
+    },
+    style: {
+        "color": "#ff7800",
+        "weight": 5,
+        "opacity": 0.65
+    }
+}
+
+
+function getColor(d) {
+    return d > 50 ? '#800026' :
+           d > 30  ? '#BD0026' :
+           d > 25  ? '#E31A1C' :
+           d > 20  ? '#FC4E2A' :
+           d > 15   ? '#FD8D3C' :
+           d > 10   ? '#FEB24C' :
+           d > 5  ? '#FED976' :
+                      '#FFEDA0';
+}
+
+var crimeGridStyle = {
+    style: function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.z),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+  }
+}
+
+
+// create some data:
+// generate some random point data
+var mybbox = [-122.3, 37.77, -122.23,37.84];
+var points = turf.random('points', 100, {
+  bbox: mybbox
+});
+
+// create a "z" value for each point up to 50
+points.features.forEach(function(d){
+    d.properties.z = ~~(Math.random() * 50);
+});
+
+// show the points on the map
+L.geoJson(points, pointStyle).addTo(map);
+
+var cellWidth = 0.5;
+var units = 'kilometers';
+var squareGrid = turf.squareGrid(mybbox, cellWidth, units);
+
+// join the values of the points to the grid
+var count = turf.collect(squareGrid, points, "z", "z")
+console.log(count);
+
+L.geoJson(count, crimeGridStyle).addTo(map);
+
+
+</textarea>
+</div>
+<script type="text/javascript" src="../../components/main.js"></script>
+</body>
+
+</html>
