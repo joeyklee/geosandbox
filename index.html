@@ -6,146 +6,337 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <script type="text/javascript" src="libs/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="libs/bootstrap.min.css">
+    <script type="text/javascript" src="libs/bootstrap.min.js"></script> -->
 </head>
 <style type="text/css">
+iframe {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    border: none;
+}
 
+body {
+    position: relative;
+}
 
-    iframe{
-        overflow-y: hidden;
-        overflow-x: hidden;
-        border: none;
-    }
-    body {
-      position: relative;
-  }
-   ul.nav-pills {
-      top: 30px;
-      left:10px;
-      position: fixed;
-      overflow-y: auto;
-  }
-  .nav-pills > li.active > a{
+ul.nav-pills {
+    top: 30px;
+    left: 10px;
+    position: fixed;
+    overflow-y: auto;
+}
+
+.nav-pills > li.active > a {
     background-color: #673ab7;
-  }
+}
 
-  .navbar-brand{ margin-left: 20px; }
+.navbar-brand {
+    margin-left: 20px;
+}
 
-
-
-  @media (max-width: 1080px) {
+@media (max-width: 1080px) {
     #myScrollspy {
-      display: none;
+        display: none;
     }
-  }
+}
 
-  #hello-leaflet{
+#hello-leaflet {
     background-color: #00A388;
-    color:white;
-  }
-  #hello-turf{
+    color: black;
+}
+
+#hello-turf {
     background-color: #FFFF9D;
-    color:black;
-  }
+    color: black;
+}
 
-  #oakland-crime-exploration{
+#oakland-crime-exploration {
     background-color: #FF6138;
-  }
+    color: black;
+}
 
-  .jumbotron, .btn,.btn-primary,.btn-lg{
+#hello-mapboxgl {
+    background-color: #4286f4;
+    color: black;
+}
+
+#hello-carto {
+    background-color: #af41f4;
+    color: black;
+}
+
+#header-nav {
+    background-color: #f44141;
+    color: black;
+}
+
+
+/*
+
+.jumbotron,
+.btn,
+.btn-primary,
+.btn-lg {
     border-radius: 0 !important;
-  }
+}
 
-  #hello-leaflet-button{
+#hello-leaflet-button {
     background-color: #004d40;
-    border:none;
-  }
-  #hello-turf-button{
+    border: none;
+}
+
+#hello-turf-button {
     background-color: #e6e600;
-    color:black;
-    border:none;
-  }
-  #oakland-crime-exploration-button{
+    color: black;
+    border: none;
+}
+
+#oakland-crime-exploration-button {
     background-color: #661400;
-    border:none;
-  }
+    border: none;
+}
 
-  #data-drawing-tool{
-    background-color: #f781bf;
-    color:black;
-  }
-  #data-drawing-tool-button{
+#data-drawing-tool-button {
     background-color: #c00c6c;
-    color:black;
-    border:none;
-  }
+    color: black;
+    border: none;
+}
 
+
+*/
+
+#data-drawing-tool {
+    background-color: #f781bf;
+    color: black;
+}
+
+.content .row {
+    height: 300px;
+    /*color:black;*/
+}
+
+.lesson {
+    height: 300px;
+    /*width: 200;*/
+    /*background: grey;*/
+    border: 2px black solid;
+    text-align: center;
+    position: relative;
+    /*color:black;*/
+}
+
+.lesson .centered {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.letter {
+    font-size: 180px;
+    display: block;
+}
+
+.details {
+    display: none;
+}
+
+a:link,
+a:visited {
+    color: inherit;
+    text-decoration: none;
+}
+
+#about-modal-container {
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    left: 0px;
+    top: 0px;
+    color: black;
+    text-align: center;
+}
+
+#my-modal-sub-container{
+  position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+#about-close{
+  width:40px;
+  height: 40px;
+  right:0px;
+  position: absolute;
+  text-align: center;
+  font-size: 20px;
+  /*padding: 20px;*/
+  padding-top: 5px;
+  border:2px black solid;
+}
 </style>
+
 <body>
-        <!-- colors: https://color.adobe.com/Phaedra-color-theme-1764754/?showPublished=true -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="">
-        <a class="navbar-brand" href="index.html">
-          <img alt="geosandbox" src="assets/geosandbox.png" width="30px">
-        </a>
-        <p class="navbar-text"><b>GeoSandbox</b></p>
-        <p class="navbar-text pull-right"><a href="boilerplate/index.html" download>Download Leaflet Boilerplate</a></p>
-      </div>
-    </nav>
-    <br><br><br>
-    <div class="container">
-        <!-- <div class="col-md-12">
-            <div class="col-md-12">
-            <h1>GeoSandbox</h1></p>
-            <p><a href="boilerplate/index.html" download>Download Leaflet Boilerplate</a></p>
+    <div class="content">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 lesson header" id="header-nav">
+                <div class="centered">
+                    <h3>Geosandbox</h3>
+                    <p id="about-button">about</p>
+                    <p><a href="github.com/joeyklee/geosandbox">contribute</a></p>
+                    <p><a href="boilerplate/index.html">leaflet boilerplate</a></p>
+                </div>
             </div>
-        </div> -->
-
-        <div class="col-md-12">
-            <div class="jumbotron" id="hello-leaflet">
-              <h2>Hello, Leaflet.js!</h2>
-              <p>Get started with the leaflet.js library. Using this interactive sandbox, you will be able to experiment with the leaflet.js API and learn how to work with geodata on the web.</p>
-              <p><a class="btn btn-primary btn-lg" href="hello-leaflet.html" role="button" target="_blank" id="hello-leaflet-button">Get Started!</a></p>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 lesson" id="hello-leaflet">
+                <a class="centered lessonbox" href="hello-leaflet.html" target="_blank">
+                    <div class="letter">L</div>
+                    <div class="details">
+                        <h2>Leaflet.js sandbox!</h2>
+                        <p>Get started with the leaflet.js library. Using this interactive sandbox, you will be able to experiment with the leaflet.js API and learn how to work with geodata on the web.</p>
+                    </div>
+                </a>
             </div>
-        </div>
-
-        <div class="col-md-12">
-            <div class="jumbotron" id="hello-turf">
-              <h2>Hello, Turf.js!</h2>
-              <p>Get started with the turf.js library - an advanced geospatial analysis API for the browser. Using this interactive sandbox, you will be able to experiment with turf.js functions and learn how it extends your interactive web map.</p>
-              <p><a class="btn btn-primary btn-lg" href="hello-turf.html" role="button" target="_blank" id="hello-turf-button">Get Started!</a></p>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 lesson" id="hello-turf">
+                <a class="centered lessonbox" href="hello-turf.html" target="_blank">
+                    <div class="letter">T</div>
+                    <div class="details">
+                        <h2>Turf.js sandbox!</h2>
+                        <p>Get started with the turf.js library - an advanced geospatial analysis API for the browser. Here, you will be able to experiment with turf.js functions and learn how it extends your interactive web map.</p>
+                    </div>
+                </a>
             </div>
         </div>
-
-        <div class="col-md-12">
-            <div class="jumbotron" id="data-drawing-tool">
-              <h2>Experimental Data Drawing Tool</h2>
-              <p>The Experimental Data Drawing Tool showcases some possiblities for mapping and creating data using leaflet.js and turf.js. This example builds on the learnings from <a href="hello-leaflet.html">Hello, Leaflet.js!</a> and <a href="hello-turf.html">Hello, Turf.js!</a> to put together a simple map drawing tool.</p>
-              <p><a class="btn btn-primary btn-lg" href="hello-drawing-tool.html" role="button" target="_blank" id="data-drawing-tool-button">Get Started!</a></p>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 lesson" id="data-drawing-tool">
+                <a class="centered lessonbox" href="hello-drawing-tool.html" target="_blank">
+                    <div class="letter">E</div>
+                    <div class="details">
+                        <h2>Experimental Data Drawing Tool</h2>
+                        <p>The example showcases how you might make a data drawing and collection tool. This example builds on the learnings from the <span href="hello-leaflet.html">Leaflet.js</span> and <span href="hello-turf.html">Turf.js!</span> sandboxes to put together a simple map drawing tool.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 lesson" id="oakland-crime-exploration">
+                <a class="centered lessonbox" href="oakland-crime.html" target="_blank">
+                    <div class="letter">O</div>
+                    <div class="details">
+                        <h2>Oakland Crime Exploration</h2>
+                        <p>This example showcases some possiblities for mapping data using leaflet.js and turf.js. This example builds on the learnings from the <span href="hello-leaflet.html">Leaflet.js</span> and <span href="hello-turf.html">Turf.js!</span> sandboxes to represent the crime in Oakland, CA.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 lesson" id="hello-mapboxgl">
+                <a class="centered lessonbox" href="#">
+                    <div class="letter">M</div>
+                    <div class="details">
+                        <h2>MapboxGL.js sandbox!</h2>
+                        <p>Get started with MapboxGL.js with this handy little sandbox. coming soon!</p>
+                    </div>
+                </a>
             </div>
         </div>
-
-        <div class="col-md-12">
-            <div class="jumbotron" id="oakland-crime-exploration">
-              <h2>Oakland Crime Exploration</h2>
-              <p>The Oakland Crime Exploration showcases some possiblities for mapping data using leaflet.js and turf.js. This example builds on the learnings from <a href="hello-leaflet.html">Hello, Leaflet.js!</a> and <a href="hello-turf.html">Hello, Turf.js!</a> to represent the crime data from Oakland, CA.</p>
-              <p><a class="btn btn-primary btn-lg" href="oakland-crime.html" role="button" target="_blank" id="oakland-crime-exploration-button">Get Started!</a></p>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 lesson" id="hello-carto">
+                <a class="centered lessonbox" href="#">
+                    <div class="letter">C</div>
+                    <div class="details">
+                        <div class="details">
+                            <h2>Carto.js sandbox!</h2>
+                            <p>Get started with Carto.js with this handy little sandbox. Coming soon!</p>
+                        </div>
+                    </div>
+                </a>
             </div>
-        </div>
-
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 lesson">
+                <a class="centered lessonbox randomLocation" href="#" target="_blank">
+                    <div class="letter">?</div>
+                    <div class="details">Take me somewhere</div>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 lesson">
+                <a class="centered lessonbox randomLocation" href="#" target="_blank">
+                    <div class="letter">?</div>
+                    <div class="details">Take me somewhere</div>
+                </a>
+            </div>
         </div>
     </div>
+    <div id="about-modal-container">
+        <div id="about-close">X</div>
+        <div id="my-modal-sub-container">
+            
+            <div class="my-modal-content">
+                <h2>Welcome to the Geosandbox!</h2>
+                <p>The geosandbox is a little playground for people wanting to write a bit of code and test out some of the more common web libraries for making maps and visualizing geodata. Often times when I'm doing geovisualization, I want to quickly test out a function here and there and thought it might be handy to have a few examples to play with. I started this project during my Mozilla Science Fellowship between 2015-2016 and am slowly but surely trying to keep this thing alive. In the future, I'd like to make it easier to contribute examples, but for now, I hope this helps!</p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    $(".lessonbox").hover(function() {
+        $(this).find(".letter").css("display", "none");
+        $(this).find(".details").css("display", "block");
+    }, function() {
+        $(this).find(".letter").css("display", "block");
+        $(this).find(".details").css("display", "none");
+    });
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    $("#about-button").click(function() {
+        console.log("clicked!")
+        $("#about-modal-container").css("display", "block");
+    })
+    $("#about-close").click(function() {
+        console.log("closed!")
+        $("#about-modal-container").css("display", "none");
+    })
 
-  ga('create', 'UA-90334615-1', 'auto');
-  ga('send', 'pageview');
+    var randomLinks = [
+      "https://science.mozilla.org/",
+      "https://carto.com/",
+      "https://www.mapbox.com/",
+      "https://what3words.com/",
+      "https://www.openstreetmap.org/",
+      "http://leafletjs.com/",
+      "http://lab.moovel.com/",
+      "http://foss4g.org/",
+      "http://maps.stamen.com/",
+    ];
 
-</script>
+    // http://maps.stamen.com/#terrain/12/37.7706/-122.3782
+    var randomLat = (Math.random() * 50) -50; 
+    var randomLon = (Math.random() * 180) - 180; 
 
+    var geoLink = `http://maps.stamen.com/#terrain/4/${randomLat}/${randomLon}`;
+    $(".randomLocation").click(function(){
+      window.open(
+        geoLink,
+        '_blank'
+      );
+    })
+
+    </script>
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-90334615-1', 'auto');
+    ga('send', 'pageview');
+    </script>
 </body>
 
 </html>
