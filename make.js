@@ -21,28 +21,3 @@ function createLessons(ipath, opath) {
 }
 
 createLessons(process.argv[2], process.argv[3]);
-
-// console.log(process.argv[2]);
-
-// var test = fs.readdirSync("lessons/");
-// // console.log(test);
-
-
-
-
-// test.forEach(function( file){
-//  if(file != ".DS_Store"){
-//      var thing = fs.readFileSync("lessons/"+file, 'utf8');
-//      // console.log(header);
-//      // console.log(thing);
-//      // console.log(closer);
-//      var output = header + thing + closer;
-//      console.log(output);
-
-//      fs.writeFileSync("outputs/"+file, output)
-
-
-
-
-//  }
-// })
