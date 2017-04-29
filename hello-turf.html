@@ -125,7 +125,7 @@ var lessons = [{
 // 
 lessons.forEach(function(d, i) {
     var output = "<h3>" + d.title + "</h3>" + "<p>" + d.desc + "</p>" +
-        "<iframe src=" + "'lessons/hello-turf/" + d.link + "'" + "width = '100%' height = '720px'" + "id='section" + i + "'></iframe>";
+        "<iframe src=" + "'lessons/output/hello-turf/" + d.link + "'" + "width = '100%' height = '720px'" + "id='section" + i + "'></iframe>";
 
     var legendItems = "<li><a href='#section" + i + "'>" + d.title + "</a></li>";
     $('#lessons').append(output);

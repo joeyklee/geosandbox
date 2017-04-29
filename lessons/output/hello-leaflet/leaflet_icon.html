@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello Leaflet</title>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- turfjs -->
+    <script type="text/javascript" src="https://npmcdn.com/@turf/turf@3.5.1/turf.min.js"></script>
+    <!-- leaflet -->
+    <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+    <script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+    <!-- code mirror -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/edit/matchbrackets.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/comment/continuecomment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/comment/comment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/mode/javascript/javascript.min.js"></script>
+    <!--  filesaver -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+    <!-- d3 -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+    <!-- leaflet draw -->
+    <link rel="stylesheet" type="text/css" href="../../libs/leaflet.draw.css">
+    <script type="text/javascript" src="../../libs/leaflet.draw.js"></script>
+    <!-- lessons css -->
+    <link rel="stylesheet" type="text/css" href="../../components/lessons.css">
+</head>
+
+<body>
+    <div class="content">
+        <div class="col-md-6 col-sm-6" id="geocontainer">
+            <div id="mymap"> </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <button class="btn btn-success btn-lg" id="rerun">
+                <a class="glyphicon glyphicon-triangle-right"></a> Run Code
+            </button>
+            <!-- <button class="btn btn-default btn-lg" id="dl">
+        <a class="glyphicon glyphicon-save"></a> Download
+    </button> -->
+            <textarea id="code" name="code">
+initMap();
+
+var myIcon = L.icon({
+    iconUrl: 'data:image/jpeg;base64,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',
+    iconSize: [150, 150],
+    // iconAnchor: [22, 94],
+    popupAnchor: [-3, -76],
+    // shadowUrl: 'my-icon-shadow.png',
+    // shadowRetinaUrl: 'my-icon-shadow@2x.png',
+    // shadowSize: [68, 95],
+    // shadowAnchor: [22, 94]
+});
+
+L.marker([37.813193, -122.281101], {icon: myIcon}).addTo(map);
+</textarea>
+</div>
+<script type="text/javascript" src="../../components/withLeaflet/main.js"></script>
+<script type="text/javascript" src="../../components/nonGeoCode.js"></script>
+</body>
+
+</html>
