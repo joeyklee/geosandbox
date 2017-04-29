@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Building Curious GeoGeometries</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<style type="text/css">
+iframe {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    border: none;
+}
+
+body {
+    position: relative;
+}
+
+ul.nav-pills {
+    top: 30px;
+    left: 10px;
+    position: fixed;
+    overflow-y: auto;
+}
+
+.nav-pills > li.active > a {
+    background-color: #673ab7;
+}
+
+.navbar-brand {
+    margin-left: 20px;
+}
+
+@media (max-width: 1020px) {
+    #myScrollspy {
+        display: none;
+    }
+}
+</style>
+
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="150">
+    <div class="col-md-12">
+        <div class="col-md-offset-2">
+            <h1>Building Curious Geographic Geometries</h1>
+            <p>with <b>Joey Lee</b></p>
+            <p><a href="boilerplate/index.html" download>Download Leaflet Boilerplate</p>
+        </div>
+        <!-- load in all the lessons here -->
+        <nav id="myScrollspy" class="col-md-2">
+        <ul id="legend" class="nav nav-pills nav-stacked"></ul>
+        </nav>
+        <div class="col-md-offset-2" id="lessons"></div>
+        <div><br><br><br></div>
+    </div>
+
+
+</body>
+<script type="text/javascript">
+        // create an array of the html
+        var lessons = [
+            {
+                link: 'mapboxgl_geojson_circle.html', 
+                title: 'Geojson circle',
+                desc: 'Use turfjs to create a point, then use the addSource and addLayer functions to add your geojson point to the map.'
+            }
+        ];
+
+        // 
+        lessons.forEach(function(d,i){
+            var output = "<iframe src=" + "'lessons/output/hello-mapboxgl/" + d.link + "'"+ "width = '100%' height = '720px'" + "id='section"+ i +"'></iframe>";
+
+            var legendItems = "<li><a href='#section"+i+"'>"+ d.title+ "</a></li>"; $('#lessons').append(output); $('#legend').append(legendItems); })
+
+                </script>
+                <script>
+                (function(i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r;
+                    i[r] = i[r] || function() {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+                    a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+                ga('create', 'UA-90334615-1', 'auto');
+                ga('send', 'pageview');
+                </script>
+
+</html>

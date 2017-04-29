@@ -98,6 +98,10 @@ var lessons = [{
     link: 'map_key_press_circles.html',
     desc: 'Here we define a function called circlesToCircles(). This function says: "when the number 3 key is pressed - 1. get all the points circles that have been drawn on the map, 2. take those points and their radius and draw the circle as a polygon and put them in a list, 2. create a featureCollection of those geojson polygon circles, and 3. then throws those circles into the circs featureGroup." '
 }, {
+    title: 'Keyboard Events Part IV: Generating a Convex Hull from points',
+    link: 'map_key_press_convexhull.html',
+    desc: 'Here we define a function called circlesToConvex(). This function says: "when the number 4 key is pressed - 1. get all the points circles that have been drawn on the map, 2. take those points and put them in a list, 2. create a featureCollection of those points, and 3. then call the convex() function on those points to return a convexhull polygon" '
+},{
     title: 'Keyboard Events Part V: Saving Data',
     link: 'map_key_press_datadump.html',
     desc: 'Here we define a function called downloadJson(). This function says: "1. when the capital letter A key is pressed download the data you have drawn with the drawing tools, 2. when the capital letter B is pressed, download the data you have drawn for the bezier. '
@@ -106,7 +110,7 @@ var lessons = [{
 // 
 lessons.forEach(function(d, i) {
     var output = "<h3>" + d.title + "</h3>" + "<p>" + d.desc + "</p>" +
-        "<iframe src=" + "'lessons/hello-drawing-tool/" + d.link + "'" + "width = '100%' height = '720px'" + "id='section" + i + "'></iframe>";
+        "<iframe src=" + "'lessons/output/hello-drawing-tool/" + d.link + "'" + "width = '100%' height = '720px'" + "id='section" + i + "'></iframe>";
 
     var legendItems = "<li><a href='#section" + i + "'>" + d.title + "</a></li>";
     $('#lessons').append(output);

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello Leaflet</title>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- turfjs -->
+    <script type="text/javascript" src="https://npmcdn.com/@turf/turf@3.5.1/turf.min.js"></script>
+    <!-- leaflet -->
+    <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+    <script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+    <!-- code mirror -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/edit/matchbrackets.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/comment/continuecomment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/comment/comment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/mode/javascript/javascript.min.js"></script>
+    <!--  filesaver -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+    <!-- d3 -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+    <!-- leaflet draw -->
+    <link rel="stylesheet" type="text/css" href="../../libs/leaflet.draw.css">
+    <script type="text/javascript" src="../../libs/leaflet.draw.js"></script>
+    <!-- lessons css -->
+    <link rel="stylesheet" type="text/css" href="../../components/lessons.css">
+</head>
+
+<body>
+    <div class="content">
+        <div class="col-md-6 col-sm-6" id="geocontainer">
+            <div id="mymap"> </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <button class="btn btn-success btn-lg" id="rerun">
+                <a class="glyphicon glyphicon-triangle-right"></a> Run Code
+            </button>
+            <!-- <button class="btn btn-default btn-lg" id="dl">
+        <a class="glyphicon glyphicon-save"></a> Download
+    </button> -->
+            <textarea id="code" name="code">
+// call initMap()
+initMap();
+
+var tess = {
+    "type": "Feature",
+    "properties": {},
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [ [-122.29044914245604, 37.82653126272444 ], [-122.2917366027832, 37.8222600426766 ], [-122.29611396789551, 37.81697152299201 ], [-122.30366706848143, 37.81114015184751 ], [-122.30409622192383, 37.80781742045232 ], [-122.30323791503906, 37.805172690644405 ], [-122.29963302612305, 37.80279913453404 ], [-122.29302406311035, 37.80279913453404 ], [-122.28838920593262, 37.80354511753133 ], [-122.28572845458984, 37.80286695148153 ], [-122.2825527191162, 37.80205314400207 ], [-122.2804069519043, 37.801035872043144 ], [-122.28066444396971, 37.803206035284816 ], [-122.27869033813475, 37.80686804116253 ], [-122.27551460266112, 37.811750433197105 ], [-122.2723388671875, 37.81405589499437 ], [-122.27096557617189, 37.816564698091184 ], [-122.26933479309082, 37.82348041648596 ], [-122.27079391479491, 37.824632973221526 ], [-122.27791786193848, 37.826192286037355 ], [-122.2818660736084, 37.827209211427395 ], [-122.28538513183592, 37.82673464798931 ], [-122.28701591491699, 37.82626008149933 ], [-122.28907585144043, 37.82626008149933 ], [-122.29044914245604, 37.82653126272444 ] ] ] 
+        } 
+    };
+
+var o = turf.tesselate(tess);
+L.geoJson(o, { color: "red" }).addTo(map);
+
+</textarea>
+</div>
+<script type="text/javascript" src="../../components/withLeaflet/main.js"></script>
+<script type="text/javascript" src="../../components/nonGeoCode.js"></script>
+</body>
+
+</html>
