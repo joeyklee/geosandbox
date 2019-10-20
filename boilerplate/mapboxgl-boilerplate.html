@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>mapboxgl boilerplate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- turfjs -->
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
+    <!-- MapboxGLJS -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
+
+  </head>
+  <body>
+    <div id='mymap'></div>
+    <script>
+      let map;
+
+      function initMap() {
+          // initialize map container
+          mapboxgl.accessToken = 'pk.eyJ1Ijoiam9leWtsZWUiLCJhIjoiMlRDV2lCSSJ9.ZmGAJU54Pa-z8KvwoVXVBw';
+          map = new mapboxgl.Map({
+              container: 'mymap',
+              center: [-122.266433, 37.799289],
+            zoom: 10,
+            hash: true,
+              style: 'mapbox://styles/mapbox/streets-v9'
+          });
+      }
+      initMap();
+
+      map.on('load', function(){
+        console.log('map is ready!');
+      });
+      
+    </script>
+  </body>
+</html>
