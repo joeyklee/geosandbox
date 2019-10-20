@@ -43,28 +43,20 @@
             <textarea id="code" name="code">
 initMap();
 
+
 map.on("load", function(){
 	
-	var point = turf.point([-122.266433, 37.799289]);
+	var point = turf.point([]);
 	console.log(point);
 
 
-	// Add a single point to the map
-	    map.addSource('point', {
-	        "type": "geojson",
-	        "data": point
-	    });
+  const marker = new mapboxgl.Marker()
+    .setLngLat([-122.266433, 37.799289])
+    .addTo(map);
 
-	    map.addLayer({
-	        "id": "point",
-	        "type": "circle",
-	        "source": "point",
-	        "paint": {
-	            "circle-radius": 10,
-	            "circle-color": "#3887be"
-	        }
-	    });
 })
+
+
 
 </textarea>
 </div>
