@@ -18,15 +18,16 @@ body {
     position: relative;
 }
 
-ul.nav-pills {
-    top: 30px;
-    left: 10px;
-    position: fixed;
-    overflow-y: auto;
-}
-
 .nav-pills > li.active > a {
     background-color: #673ab7;
+}
+
+#myScrollspy {
+    z-index: 1000;
+    position: fixed;
+    left: 0px;
+    height: 100%;
+    overflow-y: auto;
 }
 
 .navbar-brand {
@@ -38,16 +39,28 @@ ul.nav-pills {
         display: none;
     }
 }
+
+.align-center{
+    position: absolute;
+    left:50%;
+}
 </style>
 
-<body data-spy="scroll" data-target="#myScrollspy" data-offset="150">
+<!-- <body data-spy="scroll" data-target="#myScrollspy" data-offset="200">
+
+    <nav class="navbar navbar-default center">
+            <div class="">
+                <a class="navbar-brand" href="index.html">
+                    <img alt="geosandbox" src="assets/geosandbox.png" width="30px">
+                </a>
+                <p class="navbar-text"><b>GeoSandbox</b></p>
+                <p class="navbar-text align-center"><b>MapboxGL Sandbox!</b></p>
+                <p class="navbar-text pull-right"><a href="boilerplate/mapboxgl-boilerplate.html" download>Download MapboxGL Boilerplate</a></p>
+            </div>
+        </nav>
+
     <div class="col-md-12">
-        <div class="col-md-offset-2">
-            <h1>MapboxGL Sandbox</h1>
-            <p>with <b>Joey Lee</b></p>
-            <p><a href="boilerplate/mapboxgl-boilerplate.html" download>Download Leaflet Boilerplate </a></p>
-        </div>
-        <!-- load in all the lessons here -->
+
         <nav id="myScrollspy" class="col-md-2">
         <ul id="legend" class="nav nav-pills nav-stacked"></ul>
         </nav>
@@ -56,7 +69,34 @@ ul.nav-pills {
     </div>
 
 
-</body>
+</body> -->
+
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="200">
+        <!-- navbar top -->
+        <nav class="navbar navbar-default center">
+            <div class="">
+                <a class="navbar-brand" href="index.html">
+                    <img alt="geosandbox" src="assets/geosandbox.png" width="30px">
+                </a>
+                <p class="navbar-text"><b>GeoSandbox</b></p>
+                <p class="navbar-text align-center"><b>MapboxGL Sandbox!</b></p>
+                <p class="navbar-text pull-right"><a href="boilerplate/mapboxgl-boilerplate.html" download>Download MapboxGL Boilerplate</a></p>
+            </div>
+        </nav>
+    
+        <!-- page main -->
+        <div class="col-md-12">
+            <div id="myScrollspy" class="col-md-2">
+                <ul id="legend" class="nav nav-pills"></ul>
+            </div>
+            <div class="col-md-offset-2" id="lessons"></div>
+            <div>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+    </body>
 <script type="text/javascript">
         // create an array of the html
         var lessons = [
