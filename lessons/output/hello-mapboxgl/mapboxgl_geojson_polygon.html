@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello MapboxGL</title>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- turfjs -->
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
+    <!-- MapboxGLJS -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
+    <!-- code mirror -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/edit/matchbrackets.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/comment/continuecomment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/comment/comment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/mode/javascript/javascript.min.js"></script>
+    <!--  filesaver -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+    <!-- d3 -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+    <!-- lessons css -->
+    <link rel="stylesheet" type="text/css" href="../../components/lessons.css">
+</head>
+
+<body>
+    <div class="content">
+        <div class="col-md-6 col-sm-6" id="geocontainer">
+            <div id="mymap"> </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <button class="btn btn-success btn-lg" id="rerun">
+                <a class="glyphicon glyphicon-triangle-right"></a> Run Code
+            </button>
+            <!-- <button class="btn btn-default btn-lg" id="dl">
+        <a class="glyphicon glyphicon-save"></a> Download
+    </button> -->
+            <textarea id="code" name="code">
+initMap();
+
+map.on("load", function () {
+
+
+  const myHeart = turf.polygon([
+    [
+      [
+        -122.25311279296874,
+        37.85316995894978
+      ],
+      [
+        -122.26512908935547,
+        37.86455455760559
+      ],
+      [
+        -122.28469848632811,
+        37.86753594762488
+      ],
+      [
+        -122.30358123779297,
+        37.85859141570558
+      ],
+      [
+        -122.3097610473633,
+        37.85073017332982
+      ],
+      [
+        -122.3004913330078,
+        37.830666652929224
+      ],
+      [
+        -122.28504180908203,
+        37.819819234520956
+      ],
+      [
+        -122.2675323486328,
+        37.810326435534755
+      ],
+      [
+        -122.25311279296874,
+        37.803273851858656
+      ],
+      [
+        -122.24006652832033,
+        37.80381638220768
+      ],
+      [
+        -122.22049713134766,
+        37.824700770115996
+      ],
+      [
+        -122.20779418945311,
+        37.84557924966549
+      ],
+      [
+        -122.20470428466797,
+        37.86645181975609
+      ],
+      [
+        -122.21328735351562,
+        37.86970415551112
+      ],
+      [
+        -122.23114013671875,
+        37.8724143256462
+      ],
+      [
+        -122.24246978759764,
+        37.87160128507345
+      ],
+      [
+        -122.25311279296874,
+        37.85316995894978
+      ]
+    ]
+  ], {
+    name: 'Oakland has heart.'
+  });
+
+
+
+
+  map.addSource('myHeart', {
+    "type": "geojson",
+    "data": myHeart
+  });
+
+  map.addLayer({
+    "id": "myHeart",
+    "type": "fill", // [fill, line, symbol, circle, heatmap, fill-extrusion, raster, hillshade, background]
+    "source": "myHeart",
+    'layout': {
+
+    },
+    'paint': {
+      'fill-color': 'red',
+      'fill-opacity': 0.8
+    }
+  });
+})
+</textarea>
+</div>
+<script type="text/javascript" src="../../components/withMapboxGL/main.js"></script>
+<script type="text/javascript" src="../../components/nonGeoCode.js"></script>
+</body>
+
+</html>
