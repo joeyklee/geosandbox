@@ -9,9 +9,6 @@
 	<script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
 	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-	<!-- bootstrap -->
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<!--  filesaver -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
 	<!-- d3 -->
@@ -24,18 +21,18 @@
 	html, body {
 	   height: 100%;
 	}
-	#mapid{
+	#mymap{
 		width:100%;
 		height:100%;
 	}
 </style>
 <body>
-	<div id="mapid"></div>
+	<div id="mymap"></div>
 	<script type="text/javascript">
 		var map;
 		function initMap(){
 		    // initialize map container
-		    map = L.map('mapid').setView([37.799289, -122.266433], 13);
+		    map = L.map('mymap').setView([37.799289, -122.266433], 13);
 
 		    // get the stamen toner-lite tiles
 		    var Stamen_Toner = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
