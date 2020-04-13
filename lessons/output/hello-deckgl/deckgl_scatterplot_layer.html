@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello DeckGL</title>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- turfjs -->
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
+    <!-- MapboxGLJS -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js"></script>
+    <!-- deckgl -->
+    <script src="https://unpkg.com/deck.gl@latest/dist.min.js"></script>
+    <!-- code mirror -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/edit/matchbrackets.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/comment/continuecomment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/comment/comment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/mode/javascript/javascript.min.js"></script>
+    <!--  filesaver -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+    <!-- d3 -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+    <!-- lessons css -->
+    <link rel="stylesheet" type="text/css" href="../../components/lessons.css">
+</head>
+
+<body>
+    <div class="content">
+        <div class="col-md-6 col-sm-6" id="geocontainer">
+            <div id="mymap"> </div>
+            <canvas id="deck-canvas"></canvas>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <button class="btn btn-success btn-lg" id="rerun">
+                <a class="glyphicon glyphicon-triangle-right"></a> Run Code
+            </button>
+            <!-- <button class="btn btn-default btn-lg" id="dl">
+        <a class="glyphicon glyphicon-save"></a> Download
+    </button> -->
+            <textarea id="code" name="code">
+initMap();
+
+const data = [
+  {coordinates:[0,0]}
+];
+
+const scatterplot = new deck.ScatterplotLayer({
+  id: 'scatterplot-layer',
+  data,
+  pickable: true,
+  opacity: 1,
+  stroked: true,
+  filled: true,
+  radiusScale: 6,
+  radiusMinPixels: 1,
+  radiusMaxPixels: 100,
+  lineWidthMinPixels: 1,
+  getPosition: d => d.coordinates,
+  getRadius: d => Math.sqrt(1000000),
+  getFillColor: d => [255, 140, 0],
+  getLineColor: d => [0, 0, 0],
+  onHover: ({object, x, y}) => {
+    const tooltip = `null island`;
+    /* Update tooltip
+      http://deck.gl/#/documentation/developer-guide/adding-interactivity?section=example-display-a-tooltip-for-hovered-object
+    */
+  }
+})
+
+const layers = [
+  scatterplot
+]
+
+app.setProps({layers});
+
+// app.setProps([layer]);
+</textarea>
+</div>
+<script type="text/javascript" src="../../components/withDeckGL/main.js"></script>
+<script type="text/javascript" src="../../components/nonGeoCode.js"></script>
+</body>
+
+</html>

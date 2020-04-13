@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello DeckGL</title>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- turfjs -->
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
+    <!-- MapboxGLJS -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js"></script>
+    <!-- deckgl -->
+    <script src="https://unpkg.com/deck.gl@latest/dist.min.js"></script>
+    <!-- code mirror -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/edit/matchbrackets.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/comment/continuecomment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/comment/comment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/mode/javascript/javascript.min.js"></script>
+    <!--  filesaver -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+    <!-- d3 -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+    <!-- lessons css -->
+    <link rel="stylesheet" type="text/css" href="../../components/lessons.css">
+</head>
+
+<body>
+    <div class="content">
+        <div class="col-md-6 col-sm-6" id="geocontainer">
+            <div id="mymap"> </div>
+            <canvas id="deck-canvas"></canvas>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <button class="btn btn-success btn-lg" id="rerun">
+                <a class="glyphicon glyphicon-triangle-right"></a> Run Code
+            </button>
+            <!-- <button class="btn btn-default btn-lg" id="dl">
+        <a class="glyphicon glyphicon-save"></a> Download
+    </button> -->
+            <textarea id="code" name="code">
+let map;
+let app;
+
+const INITIAL_VIEW_STATE = {
+  latitude: 51.47,
+  longitude: 0.45,
+  zoom: 4,
+  bearing: 0,
+  pitch: 30
+};
+
+// Set your mapbox token here
+mapboxgl.accessToken = "pk.eyJ1Ijoiam9leWtsZWUiLCJhIjoiMlRDV2lCSSJ9.ZmGAJU54Pa-z8KvwoVXVBw";
+
+function initMap(){
+    map = new mapboxgl.Map({
+    container: 'mymap',
+    style: 'mapbox://styles/mapbox/light-v9',
+    // Note: deck.gl will be in charge of interaction and event handling
+    interactive: true,
+    center: [INITIAL_VIEW_STATE.longitude, INITIAL_VIEW_STATE.latitude],
+    zoom: INITIAL_VIEW_STATE.zoom,
+    bearing: INITIAL_VIEW_STATE.bearing,
+    pitch: INITIAL_VIEW_STATE.pitch
+    });
+
+    app = new deck.Deck({
+    canvas: 'deck-canvas',
+    width: '100%',
+    height: '100%',
+    initialViewState: INITIAL_VIEW_STATE,
+    controller: true,
+    onViewStateChange: ({viewState}) => {
+        map.jumpTo({
+        center: [viewState.longitude, viewState.latitude],
+        zoom: viewState.zoom,
+        bearing: viewState.bearing,
+        pitch: viewState.pitch
+        });
+    },
+    layers: []
+    });
+}
+
+initMap();
+</textarea>
+</div>
+<script type="text/javascript" src="../../components/withDeckGL/main.js"></script>
+<script type="text/javascript" src="../../components/nonGeoCode.js"></script>
+</body>
+
+</html>

@@ -12,12 +12,15 @@ if(process.argv[3] === "-withMapboxGL"){
 if(process.argv[3] === "-withCarto"){
     componentPath = "lessons/components/withCarto/"
 }
+if(process.argv[3] === "-withDeckGL"){
+    componentPath = "lessons/components/withDeckGL/"
+}
 
 var header = fs.readFileSync(componentPath + "header.html", 'utf8');
 var closer = fs.readFileSync(componentPath + "closer.html", 'utf8');
 
 function createLessons(iopath) {
-    var ipath = "lessons/build/" + iopath + "/";
+    var ipath = "lessons/src/" + iopath + "/";
     var opath = "lessons/output/" + iopath + "/";
     var lessons;
 
