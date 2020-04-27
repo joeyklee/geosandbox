@@ -15,6 +15,9 @@ if(process.argv[3] === "-withCarto"){
 if(process.argv[3] === "-withDeckGL"){
     componentPath = "lessons/components/withDeckGL/"
 }
+if(process.argv[3] === "-withD3"){
+    componentPath = "lessons/components/withD3/"
+}
 
 var header = fs.readFileSync(componentPath + "header.html", 'utf8');
 var closer = fs.readFileSync(componentPath + "closer.html", 'utf8');

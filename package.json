@@ -5,13 +5,14 @@
   "main": "make.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run build:hello-deckgl && npm run build:hello-leaflet && npm run build:hello-mapboxgl && npm run build:oakland-crime && npm run build:hello-turf && npm run build:hello-drawing-tool",
+    "build": "npm run build:hello-d3geo && npm run build:hello-deckgl && npm run build:hello-leaflet && npm run build:hello-mapboxgl && npm run build:oakland-crime && npm run build:hello-turf && npm run build:hello-drawing-tool",
     "build:oakland-crime": "node make.js oakland-crime -withLeaflet",
     "build:hello-turf": "node make.js hello-turf -withLeaflet",
     "build:hello-drawing-tool": "node make.js hello-drawing-tool -withLeaflet",
     "build:hello-mapboxgl": "node make.js hello-mapboxgl -withMapboxGL",
     "build:hello-leaflet": "node make.js hello-leaflet -withLeaflet",
-    "build:hello-deckgl": "node make.js hello-deckgl -withDeckGL"
+    "build:hello-deckgl": "node make.js hello-deckgl -withDeckGL",
+    "build:hello-d3geo": "node make.js hello-d3geo -withD3"
   },
   "dependencies": {
     "leaflet-draw": "^0.3.2"
