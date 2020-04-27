@@ -1,6 +1,14 @@
-let app;
+let svg;
 
-function initMap() {
-
+async function init() {
+  const width = 400,
+        height = 400;
+    
+  svg = d3.select( "#mymap" )
+          .append( "svg" )
+          .attr( "width", width )
+          .attr( "height", height )
+          .style('background-color', '#eee');
+  
 }
-initMap();
+init();
