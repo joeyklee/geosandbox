@@ -75,6 +75,8 @@ async function init() {
       return Math.sqrt(scale(Number(d.properties.Rate_per_100k_people)) / Math.PI)*10;
     })
     .attr("fill", "red")
-    .attr("opacity", 0.75);
+    .attr("stroke", "red")
+    .attr("stroke-opacity", 1)
+    .attr("fill-opacity", 0.4);
 }
 init();
