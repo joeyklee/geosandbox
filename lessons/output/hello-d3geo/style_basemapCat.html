@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello D3 Geo</title>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- turfjs -->
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
+    <!-- d3 -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.js"></script>
+    <!-- code mirror -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/edit/matchbrackets.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/comment/continuecomment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/addon/comment/comment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/mode/javascript/javascript.min.js"></script>
+    <!--  filesaver -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+    <!-- lessons css -->
+    <link rel="stylesheet" type="text/css" href="../../components/lessons.css">
+</head>
+
+<body>
+    <div class="content">
+        <div class="col-md-6 col-sm-6" id="geocontainer">
+            <div id="mymap"> </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <button class="btn btn-success btn-lg" id="rerun">
+                <a class="glyphicon glyphicon-triangle-right"></a> Run Code
+            </button>
+            <!-- <button class="btn btn-default btn-lg" id="dl">
+        <a class="glyphicon glyphicon-save"></a> Download
+    </button> -->
+            <textarea id="code" name="code">
+let svg;
+let basemap;
+
+async function init() {
+  const width = 400,
+    height = 400;
+
+  const basemapURL =
+    "https://gist.githubusercontent.com/joeyklee/2faa602425bcb9c8bbc1a2319190051d/raw/8bdf7afce45fd282b8859a9efe1edffb7a3956ea/nyc_borough_bounds.geojson";
+
+  basemap = await fetch(basemapURL);
+  basemap = await basemap.json();
+
+  svg = d3
+    .select("#mymap")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .style("background-color", "#eee");
+
+  const projection = d3
+    .geoAlbers()
+    .center([0, 40.714666])
+    .rotate([73.947008, 0])
+    .scale(40000)
+    .translate([width / 2, height / 2]);
+
+  const geoPath = d3.geoPath().projection(projection);
+
+  svg
+    .append("g")
+    .selectAll("path")
+    .data(basemap.features)
+    .enter()
+    .append("path")
+    .attr("d", geoPath)
+    .attr("class", "borough")
+    .style("fill", (d) => {
+      switch (d.properties.boro_name) {
+        case "Manhattan":
+          return "#FF80CC";
+        case "Bronx":
+          return "#9EEBCF";
+        case "Staten Island":
+          return "#FBF1A9";
+        case "Queens":
+          return "#96CCFF";
+        case "Brooklyn":
+            return "#A463F2";
+      }
+    })
+    .style("stroke", "#FFFFFF")
+    .style("stroke-width", "1.2px");
+}
+init();
+
+</textarea>
+</div>
+<script type="text/javascript" src="../../components/withD3/main.js"></script>
+<script type="text/javascript" src="../../components/nonGeoCode.js"></script>
+</body>
+
+</html>
