@@ -8,7 +8,7 @@ async function init() {
           .append( "svg" )
           .attr( "width", width )
           .attr( "height", height )
-          .style('background-color', '#eee');
+          .style('background-color', '#F9F9F9');
   
 }
 init();

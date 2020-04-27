@@ -38,9 +38,11 @@
         <a class="glyphicon glyphicon-save"></a> Download
     </button> -->
             <textarea id="code" name="code">
+
+
 let svg;
 let basemap;
-
+let covidData;
 async function init() {
   const width = 400,
     height = 400;
@@ -51,6 +53,21 @@ async function init() {
   basemap = await fetch(basemapURL);
   basemap = await basemap.json();
 
+  const covidDataURL = "https://gist.githubusercontent.com/joeyklee/72f6c6c618477ed03147f911693adf0b/raw/b587a64c200d491ffecb27a2e421104622965be9/covid-by-boro-20200427.csv"
+  covidData = await d3.csv(covidDataURL);
+
+  console.log(covidData);
+
+  // create a feature collection of the boro centers of mass
+  let covidCentroids = basemap.features.map( d => {
+    const covidInfo = covidData.find(item => item.boro_name === d.properties.boro_name);
+    const c = turf.centerOfMass(d, covidInfo);
+    return c;
+  });
+
+  covidCentroids = turf.featureCollection(covidCentroids);
+
+  console.log(covidCentroids)
   svg = d3
     .select("#mymap")
     .append("svg")
@@ -78,6 +95,27 @@ async function init() {
     .style("fill", "#C9D1DA")
     .style("stroke", "#FFFFFF")
     .style("stroke-width", "0.5px");
+
+  const scale = d3.scaleLinear()
+      .domain([1000, 2500])
+      .range([10, 40]);
+
+  svg.append("g")
+    .selectAll("circle")
+    .data(covidCentroids.features)
+    .enter()
+    .append('circle')
+    .attr("cx", (d) => {
+      return projection(d.geometry.coordinates)[0]
+    })
+    .attr("cy", (d) => {
+      return projection(d.geometry.coordinates)[1]
+    })
+    .attr("r", (d) => {
+      return Math.sqrt(scale(Number(d.properties.Rate_per_100k_people)) / Math.PI)*10;
+    })
+    .attr("fill", "red")
+    .attr("opacity", 0.75);
 }
 init();
 

@@ -16,7 +16,7 @@ async function init() {
     .append("svg")
     .attr("width", width)
     .attr("height", height)
-    .style("background-color", "#eee");
+    .style("background-color", "#F9F9F9");
 
   const projection = d3
     .geoAlbers()
@@ -35,8 +35,8 @@ async function init() {
     .append("path")
     .attr("d", geoPath)
     .attr("class", "borough")
-    .style("fill", "#CCCCCC")
+    .style("fill", "#C9D1DA")
     .style("stroke", "#FFFFFF")
-    .style("stroke-width", "1.2px");
+    .style("stroke-width", "0.5px");
 }
 init();
