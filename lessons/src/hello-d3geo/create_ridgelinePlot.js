@@ -59,27 +59,39 @@ async function init() {
 
   const scale = d3.scaleLinear().domain([1000, 2500]).range([10, 40]);
 
+  const ridgeLine = d3
+    .line()
+    .x(function (d) {
+      return d.x;
+    })
+    .y(function (d) {
+      return d.y;
+    })
+    .curve(d3.curveMonotoneX);
+
   svg
     .append("g")
-    .selectAll("circle")
+    .selectAll("g.ridge")
     .data(covidCentroids.features)
     .enter()
-    .append("circle")
-    .attr("cx", (d) => {
-      return projection(d.geometry.coordinates)[0];
+    .append("g")
+    .attr("transform", (d) => {
+      const x = projection(d.geometry.coordinates)[0];
+      const y = projection(d.geometry.coordinates)[1];
+      return `translate( ${x}, ${y})`;
     })
-    .attr("cy", (d) => {
-      return projection(d.geometry.coordinates)[1];
+    .append("path")
+    .attr("d", (d) => {
+      const data = [
+        { x: -5, y: 0 },
+        { x: 0, y: -scale(Number(d.properties.Rate_per_100k_people) * 1.5) },
+        { x: 5, y: 0 },
+      ];
+      return ridgeLine(data);
     })
-    .attr("r", (d) => {
-      return (
-        Math.sqrt(scale(Number(d.properties.Rate_per_100k_people)) / Math.PI) *
-        10
-      );
-    })
-    .attr("fill", "red")
-    .attr("stroke", "red")
-    .attr("stroke-opacity", 1)
-    .attr("fill-opacity", 0.4);
+    .style("fill", "red")
+    .style("fill-opacity", 0.4)
+    .style("stroke", "red")
+    .style("stroke-width", 1);
 }
 init();
