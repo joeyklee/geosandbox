@@ -12,12 +12,15 @@
     "build:hello-mapboxgl": "node make.js hello-mapboxgl -withMapboxGL",
     "build:hello-leaflet": "node make.js hello-leaflet -withLeaflet",
     "build:hello-deckgl": "node make.js hello-deckgl -withDeckGL",
-    "build:hello-d3geo": "node make.js hello-d3geo -withD3"
+    "build:hello-d3geo": "node make.js hello-d3geo -withD3",
+    "serve": "http-server -p 8000"
   },
   "dependencies": {
     "leaflet-draw": "^0.3.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/joeyklee/geosandbox.git"
